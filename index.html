@@ -5,7 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Selamat Ulang Tahun, Tiara — Dari Ilham Hudallah</title>
   <style>
-    :root{/*bg:#fff5fb;--card:#ffeef7;--accent:#ff66a3;--accent2:#ff9ac2;--text:#2b0a1e*/}
+    :root{
+  --bg:#fff5fb;
+  --card:#ffeef7;
+  --accent:#ff66a3;
+  --accent2:#ff9ac2;
+  --text:#2b0a1e;
+}
+
     *{box-sizing:border-box}
     body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
           font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:linear-gradient(180deg,#ffd9ec,#fff5fb);}
@@ -34,16 +41,22 @@
       </div>
       <div>
         <h1>Selamat Ulang Tahun, <span style="color:var(--accent);">Tiara Rohmawati</span> 🎀</h1>
-        <p class="lead">Dari: <strong>Ilham Hudallah</strong> — <strong>23 Oktober</strong></p>
+        <p class="lead">Dari: <strong>si paling gantenggg</strong> — <strong>23 Oktober 2025</strong></p>
         <div class="actions">
-          <button id="playSong">Putar Lagu Instrumental</button>
+          <button id="playSong">Lagunya di putar sayanggg</button>
           <button class="secondary" id="surpriseBtn">Buka Kejutan</button>
         </div>
       </div>
     </header>
     <section class="message" id="messageBox">
-      <p>Hai Tiara! Hari ini kamu resmi naik satu level: <strong>Lebih Kece</strong> ✨</p>
-      <p style="font-weight:700;color:var(--accent2);">Pesan dari Ilham: Semoga tambah sukses, sehat, dan selalu diberi kebahagiaan. Peluk virtual! 🤗</p>
+<p>Hai sayangkuuuu 💖</p>
+<p>cieeee hari ini sayangku udah tua aja nih, eh salah maksudnya  <strong>cuantikk sayangkuu 😍✨</strong></p>
+<p>Tapi bukan cuma itu lho… 😜 kamu juga  <strong>Manusia Termanis Sejagat Raya 😘🎉</strong></p>
+<p>Dan semoga kamu selalu menjadi <strong>Versi Terbaik yang aku cintai sayangg 💞</strong></p>
+<p>Selamat ulang tahun, Tiara Rohmawati 🎂 Semoga hari ini secerah senyummu dan semanis chat aku yaaa 😝💐</p>
+<p>Dari si paling gantenggg <strong> 💚</strong></p>
+
+      <p style="font-weight:700;color:var(--accent2);">Pesan dari mas semoga tambah sukses, sehat, dan selalu diberi kebahagiaan, kemudahan pokoke seng enak enak lah aamiin. Peluk virtual! 🤗</p>
     </section>
     <div class="gallery" id="gallery">
       <img src="foto_1.jpg" alt="Lucu 1">
@@ -51,8 +64,8 @@
       <img src="foto_3.jpg" alt="Lucu 3">
     </div>
     <footer>
-      <small>Dicoding oleh Ilham Hudallah & Script Cinta & Kode ❤️</small>
-      <small id="timeStamp">--</small>
+      <small>Dari Ilham Hudallah dengan sepenuh Cinta❤️</small>
+      <small id="timeStamp">---</small>
     </footer>
   </div>
 
@@ -79,8 +92,8 @@
     const playSong = document.getElementById('playSong');
     let playing = false;
     playSong.addEventListener('click', ()=>{
-      if(!playing){ song.play().catch(()=>{}); playSong.textContent='Hentikan Lagu'; playing=true; }
-      else { song.pause(); playSong.textContent='Putar Lagu Instrumental'; playing=false; }
+      if(!playing){ song.play().catch(()=>{}); playSong.textContent='Hentikan Lagu sayangg'; playing=true; }
+      else { song.pause(); playSong.textContent='Lagunya di putar sayanggg'; playing=false; }
     });
 
     // Surprise button: modal + confetti burst + change main photo
@@ -91,7 +104,7 @@
       const overlay = document.createElement('div');
       overlay.style.position='fixed';overlay.style.inset=0;overlay.style.backdropFilter='blur(4px)';overlay.style.display='flex';overlay.style.alignItems='center';overlay.style.justifyContent='center';overlay.style.zIndex=9999;
       const card = document.createElement('div');card.style.background='white';card.style.padding='18px';card.style.borderRadius='12px';card.style.maxWidth='520px';card.style.textAlign='center';card.style.color='#220018';
-      card.innerHTML = `<h2 style="margin:0 0 8px 0">Kejutan! 🎁</h2><p style="margin:0 0 12px 0">Tiara — semoga hari ini penuh tawa dan kue! Dari Ilham Hudallah.</p><button id='closeSurprise' style='padding:8px 12px;border-radius:8px;border:0;background:linear-gradient(90deg,#ff66a3,#ff9ac2);color:white;font-weight:700;cursor:pointer'>Tutup</button>`;
+      card.innerHTML = `<h2 style="margin:0 0 8px 0">Kejutan! 🎁</h2><p style="margin:0 0 12px 0">kejutanya nyusul ya sayangkuuuuuuu.</p><button id='closeSurprise' style='padding:8px 12px;border-radius:8px;border:0;background:linear-gradient(90deg,#ff66a3,#ff9ac2);color:white;font-weight:700;cursor:pointer'>Tutup</button>`;
       overlay.appendChild(card);document.body.appendChild(overlay);
       confs.push(...Array.from({length:120}, ()=>new Confetti()));
       mainPhoto.querySelector('img').src = 'foto_2.jpg';
@@ -101,7 +114,6 @@
     // Click gallery to change main photo
     gallery.querySelectorAll('img').forEach(img=>{img.addEventListener('click', ()=>{mainPhoto.querySelector('img').src = img.src; confs.push(...Array.from({length:24}, ()=>new Confetti()));})});
 
-    document.getElementById('timeStamp').textContent = new Date().toLocaleString('id-ID', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
-  </script>
+      </script>
 </body>
 </html>
