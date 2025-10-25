@@ -69,10 +69,10 @@
     </footer>
   </div>
 
-  <audio id="song">
-    <source src="music.mp3" type="audio/mp3">
-    Browsermu tidak mendukung audio lokal.
-  </audio>
+  <audio id="song" loop>
+  <source src="music.mp3" type="audio/mp3">
+  Browsermu tidak mendukung audio lokal.
+</audio>
 
   <script>
     // Simple confetti (pink-themed)
@@ -104,7 +104,7 @@
       const overlay = document.createElement('div');
       overlay.style.position='fixed';overlay.style.inset=0;overlay.style.backdropFilter='blur(4px)';overlay.style.display='flex';overlay.style.alignItems='center';overlay.style.justifyContent='center';overlay.style.zIndex=9999;
       const card = document.createElement('div');card.style.background='white';card.style.padding='18px';card.style.borderRadius='12px';card.style.maxWidth='520px';card.style.textAlign='center';card.style.color='#220018';
-      card.innerHTML = `<h2 style="margin:0 0 8px 0">Kejutan! 🎁</h2><p style="margin:0 0 12px 0">kejutanya nyusul ya sayangkuuuuuuu.</p><button id='closeSurprise' style='padding:8px 12px;border-radius:8px;border:0;background:linear-gradient(90deg,#ff66a3,#ff9ac2);color:white;font-weight:700;cursor:pointer'>Tutup</button>`;
+      card.innerHTML = `<h2 style="margin:0 0 8px 0">Kejutan! 🎁</h2><p style="margin:0 0 12px 0">kejutanya menyusul ya sayangku cintaku maniskuuuu.</p><button id='closeSurprise' style='padding:8px 12px;border-radius:8px;border:0;background:linear-gradient(90deg,#ff66a3,#ff9ac2);color:white;font-weight:700;cursor:pointer'>Tutup</button>`;
       overlay.appendChild(card);document.body.appendChild(overlay);
       confs.push(...Array.from({length:120}, ()=>new Confetti()));
       mainPhoto.querySelector('img').src = 'foto_2.jpg';
