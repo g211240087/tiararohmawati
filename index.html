@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Selamat Ulang Tahun, Tiara — Dari Ilham Hudallah</title>
+  <style>
+    :root{/*bg:#fff5fb;--card:#ffeef7;--accent:#ff66a3;--accent2:#ff9ac2;--text:#2b0a1e*/}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+          font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:linear-gradient(180deg,#ffd9ec,#fff5fb);}
+    .card{width:94vw;max-width:980px;background:linear-gradient(180deg,rgba(255,255,255,0.8),transparent);border-radius:18px;padding:22px;border:2px solid rgba(255,150,200,0.2);box-shadow:0 14px 40px rgba(255,160,200,0.08);position:relative;overflow:hidden}
+    header{display:flex;gap:18px;align-items:center}
+    .photo{width:140px;height:140px;border-radius:16px;overflow:hidden;flex-shrink:0;box-shadow:0 8px 20px rgba(255,100,170,0.08)}
+    h1{font-size:28px;margin:0;color:var(--text)}
+    p.lead{margin:6px 0 0 0;color:rgba(43,10,30,0.8)}
+    .actions{margin-top:14px;display:flex;gap:10px}
+    button{background:linear-gradient(90deg,var(--accent),var(--accent2));border:0;padding:10px 14px;border-radius:12px;color:white;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(255,102,163,0.14)}
+    button.secondary{background:transparent;border:1px solid rgba(255,150,200,0.25);color:var(--text);font-weight:700}
+    .message{margin-top:18px;padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.7),rgba(255,240,250,0.7));border:1px dashed rgba(255,150,200,0.12)}
+    .gallery{display:flex;gap:10px;margin-top:14px}
+    .gallery img{width:calc(33.333% - 6.66px);border-radius:10px;cursor:pointer;box-shadow:0 10px 26px rgba(255,120,190,0.08)}
+    .confetti-canvas{position:absolute;inset:0;pointer-events:none}
+    footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;color:rgba(43,10,30,0.7)}
+    @media (max-width:520px){.gallery{flex-direction:column}.gallery img{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <canvas id="confetti" class="confetti-canvas"></canvas>
+    <header>
+      <div class="photo" id="mainPhoto">
+        <img src="foto_1.jpg" alt="Foto utama" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div>
+        <h1>Selamat Ulang Tahun, <span style="color:var(--accent);">Tiara Rohmawati</span> 🎀</h1>
+        <p class="lead">Dari: <strong>Ilham Hudallah</strong> — <strong>23 Oktober</strong></p>
+        <div class="actions">
+          <button id="playSong">Putar Lagu Instrumental</button>
+          <button class="secondary" id="surpriseBtn">Buka Kejutan</button>
+        </div>
+      </div>
+    </header>
+    <section class="message" id="messageBox">
+      <p>Hai Tiara! Hari ini kamu resmi naik satu level: <strong>Lebih Kece</strong> ✨</p>
+      <p style="font-weight:700;color:var(--accent2);">Pesan dari Ilham: Semoga tambah sukses, sehat, dan selalu diberi kebahagiaan. Peluk virtual! 🤗</p>
+    </section>
+    <div class="gallery" id="gallery">
+      <img src="foto_1.jpg" alt="Lucu 1">
+      <img src="foto_2.jpg" alt="Lucu 2">
+      <img src="foto_3.jpg" alt="Lucu 3">
+    </div>
+    <footer>
+      <small>Dicoding oleh Ilham Hudallah & Script Cinta & Kode ❤️</small>
+      <small id="timeStamp">--</small>
+    </footer>
+  </div>
+
+  <audio id="song">
+    <source src="music.mp3" type="audio/mp3">
+    Browsermu tidak mendukung audio lokal.
+  </audio>
+
+  <script>
+    // Simple confetti (pink-themed)
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = innerWidth;
+    let H = canvas.height = innerHeight;
+    window.addEventListener('resize', ()=>{W=canvas.width=innerWidth; H=canvas.height=innerHeight});
+    function rand(min,max){return Math.random()*(max-min)+min}
+    class Confetti{constructor(){this.x=rand(0,W);this.y=rand(-H,0);this.r=rand(6,12);this.c=['#ff9ac2','#ff66a3','#ffd1e6','#fff0f6'][Math.floor(rand(0,4))];this.t=rand(-10,10);this.g=rand(0.6,1.4)} update(){this.y+=this.g+Math.sin(this.t*0.01);this.x+=Math.sin(this.t*0.02);this.t+=0.3;if(this.y>H+20){this.y=rand(-40,0);this.x=rand(0,W)}} draw(){ctx.beginPath();ctx.fillStyle=this.c;ctx.save();ctx.translate(this.x,this.y);ctx.rotate(this.t*0.02);ctx.fillRect(-this.r/2,-this.r/2,this.r,this.r*0.6);ctx.restore()}};
+    const confs = Array.from({length:80}, ()=>new Confetti());
+    function anim(){ctx.clearRect(0,0,W,H);confs.forEach(x=>{x.update();x.draw()});requestAnimationFrame(anim)};
+    anim();
+
+    // Play on click
+    const song = document.getElementById('song');
+    const playSong = document.getElementById('playSong');
+    let playing = false;
+    playSong.addEventListener('click', ()=>{
+      if(!playing){ song.play().catch(()=>{}); playSong.textContent='Hentikan Lagu'; playing=true; }
+      else { song.pause(); playSong.textContent='Putar Lagu Instrumental'; playing=false; }
+    });
+
+    // Surprise button: modal + confetti burst + change main photo
+    const surprise = document.getElementById('surpriseBtn');
+    const mainPhoto = document.getElementById('mainPhoto');
+    const gallery = document.getElementById('gallery');
+    surprise.addEventListener('click', ()=>{
+      const overlay = document.createElement('div');
+      overlay.style.position='fixed';overlay.style.inset=0;overlay.style.backdropFilter='blur(4px)';overlay.style.display='flex';overlay.style.alignItems='center';overlay.style.justifyContent='center';overlay.style.zIndex=9999;
+      const card = document.createElement('div');card.style.background='white';card.style.padding='18px';card.style.borderRadius='12px';card.style.maxWidth='520px';card.style.textAlign='center';card.style.color='#220018';
+      card.innerHTML = `<h2 style="margin:0 0 8px 0">Kejutan! 🎁</h2><p style="margin:0 0 12px 0">Tiara — semoga hari ini penuh tawa dan kue! Dari Ilham Hudallah.</p><button id='closeSurprise' style='padding:8px 12px;border-radius:8px;border:0;background:linear-gradient(90deg,#ff66a3,#ff9ac2);color:white;font-weight:700;cursor:pointer'>Tutup</button>`;
+      overlay.appendChild(card);document.body.appendChild(overlay);
+      confs.push(...Array.from({length:120}, ()=>new Confetti()));
+      mainPhoto.querySelector('img').src = 'foto_2.jpg';
+      document.getElementById('closeSurprise').addEventListener('click', ()=>{overlay.remove()});
+    });
+
+    // Click gallery to change main photo
+    gallery.querySelectorAll('img').forEach(img=>{img.addEventListener('click', ()=>{mainPhoto.querySelector('img').src = img.src; confs.push(...Array.from({length:24}, ()=>new Confetti()));})});
+
+    document.getElementById('timeStamp').textContent = new Date().toLocaleString('id-ID', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  </script>
+</body>
+</html>
